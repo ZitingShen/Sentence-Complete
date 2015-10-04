@@ -7,13 +7,13 @@
 * frequency.
 */
 import java.util.ArrayList;
-class Word {
-    String word;
-    ArrayList<YearCount> count = new ArrayList<YearCount>();
-    int totalFrequency = 0;
-    int totalVolume = 0;
+class Word implements Comparable<Word>{
+    private String word;
+    private ArrayList<YearCount> count = new ArrayList<YearCount>();
+    private int totalFrequency = 0;
+    private int totalVolume = 0;
 
-  // constructors
+    // constructors
     Word(String w) {
         word = w;
     }
@@ -23,7 +23,7 @@ class Word {
         add(y, f, v);
     }
 
-  // add the data of another year to an existing object
+    // add the data of another year to an existing object
     public void add(int y, int f, int v) {
         if((f < 0) || (v < 0))
             System.out.println("Please give valid frequency and volume!");
@@ -34,7 +34,25 @@ class Word {
         }
     }
 
-  // help print out the word
+    // comparator
+    public int compareTo(Word other) {
+        return Integer.compare(totalFrequency, other.getFrequency());
+    }
+
+    // accessor
+    public String getWord() {
+        return word;
+    }
+
+    public int getFrequency() {
+        return totalFrequency;
+    }
+
+    public int getVolume() {
+        return totalVolume;
+    }
+
+    // help print out the word
     public String toString() {
         return word + "\" has appeared " + totalFrequency + " times in " 
         + totalVolume + " volumes in " + count.size() + " years.";
@@ -47,7 +65,7 @@ class Word {
         int frequency;
         int volume;
 
-    // constructors
+        // constructors
         YearCount(int y, int f, int v) {
             year = y;
             frequency = f;
@@ -55,12 +73,14 @@ class Word {
         }
     }
 
-  // optional tester
+    // optional tester
     public static void main(String[] args) {
-        Word w = new Word("goaway", 1989, 3, 2);
-        w.add(2001, 4, 1);
-        w.add(2003, -3, 2);
+        Word w1 = new Word("goaway", 1989, 3, 2);
+        Word w2 = new Word("don't", 1996, 12, 3);
+        w1.add(2001, 4, 1);
+        w1.add(2003, -3, 2);
         System.out.println("tester!");
-        System.out.println(w);
+        System.out.println(w1);
+        System.out.println(w1.compareTo(w2));
     }
 }

@@ -8,7 +8,7 @@
 */
 import java.util.ArrayList;
 class Word {
-	String word;
+    String word;
 	ArrayList<YearCount> count = new ArrayList<YearCount>();
 	int totalFrequency = 0;
 	int totalVolume = 0;

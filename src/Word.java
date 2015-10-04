@@ -30,7 +30,7 @@ class Word {
 		else {
 			count.add(new YearCount(y, f, v));
 			totalFrequency += f;
-        	totalVolume += v;
+      totalVolume += v;
 		}
 	}
 
